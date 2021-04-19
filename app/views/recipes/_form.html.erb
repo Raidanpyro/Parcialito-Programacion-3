@@ -1,0 +1,69 @@
+<%= form_with(model: recipe) do |form| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :featuredtest %>
+    <%= form.check_box :featuredtest %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ingredient %>
+    <%= form.text_area :ingredient %>
+  </div>
+
+  <div class="field">
+    <%= form.label :step %>
+    <%= form.text_area :step %>
+  </div>
+
+  <div class="field">
+    <%= form.label :submit_date %>
+    <%= form.datetime_select :submit_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image_url %>
+    <%= form.text_field :image_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author_id %>
+    <%= form.collection_select(:author_id, Author.all, :id, :last_name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recipe_types_id %>
+    <%= form.collection_select(:recipe_types, RecipeType.all, :id, :name) %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
